@@ -1,11 +1,13 @@
+//Agora esta classe precisa especificar o tipo de nó que está sendo criado
+
 public class Main {
 
     public static void main(String[] args) {
 
-        No no1 = new No("conteudo no1");
-        No no2 = new No("conteudo no2");
-        No no3 = new No("conteudo no3");
-        No no4 = new No("conteudo no4");
+        No<String> no1 = new No("conteudo no1");
+        No<String> no2 = new No("conteudo no2");
+        No<String> no3 = new No("conteudo no3");
+        No<String> no4 = new No("conteudo no4");
 
         //criando os nós
         no1.setProximoNo(no2);
