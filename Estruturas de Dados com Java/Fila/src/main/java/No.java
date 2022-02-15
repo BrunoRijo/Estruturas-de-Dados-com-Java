@@ -1,12 +1,12 @@
 
-public class No {
+public class No<T> {
 
-    private Object objeto = new Object();
-    private No refNo = null;
+    private T objeto;
+    private No<T> refNo;
 
     public No(){}
 
-    public No(Object objeto) {
+    public No(T objeto) {
         this.refNo = null;
         this.objeto = objeto;
     }
@@ -15,7 +15,7 @@ public class No {
         return objeto;
     }
 
-    public void setObjeto(Object objeto) {
+    public void setObjeto(T objeto) {
         this.objeto = objeto;
     }
 

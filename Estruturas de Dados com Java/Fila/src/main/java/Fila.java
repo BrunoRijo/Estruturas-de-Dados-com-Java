@@ -12,9 +12,9 @@ isEmpty -> Verificar se está vazia
 first() -> Indica quem é o primeiro da fila
 */
 
-public class Fila {
+public class Fila<T> {
 
-    private No refNoEntradaFila;
+    private No<T> refNoEntradaFila;
     //A entrada na fila é feita pelo final dela
 
     public Fila() {
@@ -25,14 +25,15 @@ public class Fila {
         return refNoEntradaFila == null? true : false;
     }
 
-    public void enqueue(No novoNo){
+    public void enqueue(T object){
+        No novoNo = new No(object);
         novoNo.setRefNo(refNoEntradaFila);
         refNoEntradaFila = novoNo;
     }
 
-    public No first(){
+    public T first(){
         if(!this.isEmpty()){
-            No primeiroNo = refNoEntradaFila;
+            No<T> primeiroNo = refNoEntradaFila;
             while(true){ //percorre todos os objetos para chegar até o primeiro
                 if(primeiroNo.getRefNextNo() != null){ //enquanto a referencia não for nula
                     primeiroNo = primeiroNo.getRefNextNo();//preencha com o objeto do prox;
@@ -40,12 +41,12 @@ public class Fila {
                     break;//quando encontrar ele sai do while e termina a func.
                 }
             }
-            return primeiroNo;
+            return (T) primeiroNo.getObjeto();
         }
         return null;
     }
 
-    public No dequeue(){
+    public T dequeue(){
         //Esse metodo precisa mudar a referencia do nó imediatamente anterior para null
         if(!isEmpty()){
             No primeiroNo = refNoEntradaFila;
@@ -61,7 +62,7 @@ public class Fila {
                     break;
                 }
             }
-            return primeiroNo;
+            return (T )primeiroNo.getObjeto();
         }
         return null;
     }
