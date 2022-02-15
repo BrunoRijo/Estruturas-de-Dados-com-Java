@@ -14,36 +14,33 @@ first() -> Indica quem é o primeiro da fila
 
 public class Fila {
 
-    private No refEntrada = new No(); //A entrada na fila é feita pelo final dela
+    private No refNoEntradaFila;
+    //A entrada na fila é feita pelo final dela
 
     public Fila() {
-        this.refEntrada = null;
+        this.refNoEntradaFila = null;
     }
 
     public boolean isEmpty(){
-        if (refEntrada == null){
-            return true;
-        } else {
-            return false;
-        }
+        return refNoEntradaFila == null? true : false;
     }
 
     public void enqueue(No novoNo){
-        novoNo.setObjeto(refEntrada);
-        refEntrada = novoNo;
+        novoNo.setRefNo(refNoEntradaFila);
+        refNoEntradaFila = novoNo;
     }
 
     public No first(){
-        if(!isEmpty()){
-            No primeiroNo = refEntrada;
+        if(!this.isEmpty()){
+            No primeiroNo = refNoEntradaFila;
             while(true){ //percorre todos os objetos para chegar até o primeiro
-                if(primeiroNo.getRefNextNo()!=null){ //enquanto a referencia não for nula
+                if(primeiroNo.getRefNextNo() != null){ //enquanto a referencia não for nula
                     primeiroNo = primeiroNo.getRefNextNo();//preencha com o objeto do prox;
                 } else{
                     break;//quando encontrar ele sai do while e termina a func.
                 }
             }
-
+            return primeiroNo;
         }
         return null;
     }
@@ -51,8 +48,8 @@ public class Fila {
     public No dequeue(){
         //Esse metodo precisa mudar a referencia do nó imediatamente anterior para null
         if(!isEmpty()){
-            No primeiroNo = refEntrada;
-            No noAuxiliar = refEntrada;
+            No primeiroNo = refNoEntradaFila;
+            No noAuxiliar = refNoEntradaFila;
             while(true){ //percorre todos os objetos para chegar até o primeiro
                 if(primeiroNo.getRefNextNo()!=null){ //enquanto a referencia não for nula
                     noAuxiliar = primeiroNo;
@@ -71,13 +68,14 @@ public class Fila {
 
     @Override
     public String toString() {
-        String retorno = "null";
-        No noAux = refEntrada;
+        String retorno = "";
+        No noAux = refNoEntradaFila;
 
-        if(refEntrada!=null){
+        if(refNoEntradaFila != null){
             while(true){
-                retorno += "[Nó{objeto="+noAux.getObjeto()+"}] ---> ";
+                retorno += "[Nó{objeto="+ noAux.getObjeto() +"}] --> ";
                 if(noAux.getRefNextNo()!=null){
+
                     noAux = noAux.getRefNextNo();
                 } else{
                     retorno += "null";

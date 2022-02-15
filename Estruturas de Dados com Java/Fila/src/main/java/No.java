@@ -2,10 +2,9 @@
 public class No {
 
     private Object objeto = new Object();
-    private No refNo = new No();
+    private No refNo = null;
 
-    public No(){
-    }
+    public No(){}
 
     public No(Object objeto) {
         this.refNo = null;
